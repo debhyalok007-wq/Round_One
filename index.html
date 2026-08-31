@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0A0A0A">
+  <title>ROUND ONE: THE INTERVIEW THAT NEVER CHANGED</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@400;500;600;700;800;900&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0A0A0A;
+      --fg: #FFFFFF;
+      --accent: #EA580C;
+      --fade: 0.6s;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Archivo', Arial, sans-serif;
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Mobile portrait rotation helper */
+    #rotate-prompt {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.98);
+      z-index: 99999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      color: #FFFFFF;
+      text-align: center;
+      padding: 2rem;
+      pointer-events: none;
+    }
+
+    #rotate-prompt .rotate-icon {
+      width: 52px;
+      height: 52px;
+      animation: phoneRotateAnim 2.4s ease-in-out infinite;
+    }
+
+    #rotate-prompt .rotate-text {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(0.95rem, 4vw, 1.2rem);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      opacity: 0.85;
+    }
+
+    @keyframes phoneRotateAnim {
+      0%, 20% { transform: rotate(0deg); }
+      50%, 70% { transform: rotate(90deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @media (max-width: 900px) and (orientation: portrait) {
+      #rotate-prompt {
+        display: flex;
+      }
+    }
+
+    #viewport {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+    }
+
+    #stage {
+      position: relative;
+      width: 100%;
+      max-width: 177.78vh;
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+      overflow: hidden;
+      container-type: inline-size;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      padding: 5.5% 6%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--fade) ease-out;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Logo placements */
+    .slide-logo {
+      position: absolute;
+      top: 5.5%;
+      left: 6%;
+      z-index: 10;
+    }
+
+    .short-logo {
+      width: clamp(22px, 2.4cqw, 36px);
+      height: auto;
+      display: block;
+    }
+
+    .no-logo .slide-logo {
+      display: none;
+    }
+
+    .full-logo {
+      width: clamp(110px, 14cqw, 180px);
+      height: auto;
+      display: block;
+    }
+
+    /* Title slide */
+    .title-slide {
+      justify-content: space-between;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .title-slide h1 {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: clamp(3.2rem, 8.5cqw, 9.5rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+      max-width: 85%;
+      margin-top: 6%;
+    }
+
+    .title-slide .speaker {
+      margin-top: auto;
+    }
+
+    .title-slide .name {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: clamp(1rem, 2.2cqw, 1.8rem);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .title-slide .role {
+      font-family: 'Archivo', Arial, sans-serif;
+      margin-top: 0.25em;
+      font-size: clamp(0.8rem, 1.6cqw, 1.25rem);
+      font-weight: 400;
+      opacity: 0.7;
+    }
+
+    /* Timer slides */
+    .timer-slide {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .timer-display {
+      font-family: 'Dosis', monospace, sans-serif;
+      font-size: clamp(5rem, 18cqw, 16rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      display: flex;
+    }
+
+    .timer-char {
+      display: inline-block;
+      width: 0.62em;
+      text-align: center;
+    }
+
+    /* Waveform slides */
+    .waveform-slide {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .waveform-wrap {
+      width: 58%;
+      max-width: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: clamp(18px, 3.2cqw, 36px);
+    }
+
+    .waveform-canvas {
+      width: 100%;
+      height: clamp(80px, 12cqw, 120px);
+      display: block;
+    }
+
+    .audio-clock {
+      font-family: 'Dosis', monospace, sans-serif;
+      font-size: clamp(1.5rem, 4cqw, 3.5rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0.8;
+      display: flex;
+    }
+
+    .audio-clock .timer-char {
+      width: 0.62em;
+    }
+
+    .audio-note {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: clamp(0.5rem, 1cqw, 0.75rem);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.35;
+    }
+
+    /* Reveal slide */
+    .reveal-slide {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .reveal-slide .verdict {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: clamp(4rem, 12cqw, 12rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .reveal-slide .rationale {
+      margin-top: 4%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5em;
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: clamp(0.85rem, 1.45cqw, 1.25rem);
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Manifesto slide */
+    .manifesto-slide {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .manifesto-slide h2 {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: clamp(3.2rem, 9.5cqw, 10rem);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.02em;
+    }
+
+    /* Verbatim slide */
+    .verbatim-slide {
+      align-items: flex-start;
+      justify-content: space-between;
+      text-align: left;
+      padding: 6% 6% 5.5% 6%;
+    }
+
+    .verbatim-quote-wrap {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 4%;
+    }
+
+    .verbatim-slide blockquote {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: clamp(1.8rem, 4.2cqw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      max-width: 90%;
+    }
+
+    .verbatim-role {
+      width: 90%;
+      text-align: right;
+      margin-top: 2%;
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: clamp(0.85rem, 1.3cqw, 1.15rem);
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--accent);
+    }
+
+    .verbatim-figures {
+      margin-top: auto;
+      display: flex;
+      gap: clamp(3rem, 7cqw, 7rem);
+      align-items: flex-start;
+    }
+
+    .figure-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .figure-value {
+      font-family: 'Archivo', sans-serif;
+      font-size: clamp(1.9rem, 4cqw, 4.2rem);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+
+    .figure-label {
+      margin-top: 0.45em;
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: clamp(0.68rem, 1.05cqw, 0.92rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Closing slide */
+    .closing-slide {
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
+    }
+
+    .closing-slide .closing-logo {
+      position: absolute;
+      bottom: calc(5.5% + 80px);
+      right: 6%;
+      left: auto;
+      top: auto;
+      margin-bottom: 0;
+    }
+
+    .closing-slide h2 {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: clamp(2.4rem, 6.2cqw, 6.5rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      max-width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <div id="rotate-prompt">
+    <svg class="rotate-icon" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="5" y="2" width="14" height="20" rx="2.5" ry="2.5"/>
+      <path d="M12 18h.01"/>
+    </svg>
+    <div class="rotate-text">Rotate device to landscape to view presentation</div>
+  </div>
+
+  <div id="viewport">
+    <div id="stage">
+
+      <!-- 1. Title -->
+      <section class="slide title-slide active" id="slide-0">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <h1>ROUND ONE:<br>THE INTERVIEW<br>THAT NEVER CHANGED</h1>
+        <div class="speaker">
+          <div class="name">Javeed Ashraf Khan</div>
+          <div class="role">Co-founder &amp; CGPO, TidyHire</div>
+        </div>
+      </section>
+
+      <!-- 2. Black -->
+      <section class="slide no-logo" id="slide-1">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 3. Timer paused -->
+      <section class="slide timer-slide" id="slide-2">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="timer-display" id="timer-display"></div>
+      </section>
+
+      <!-- 4. Timer running -->
+      <section class="slide timer-slide" id="slide-3">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="timer-display" id="timer-display-running"></div>
+      </section>
+
+      <!-- 5. Black -->
+      <section class="slide no-logo" id="slide-4">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 6. Waveform paused -->
+      <section class="slide waveform-slide" id="slide-5">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="waveform-wrap">
+          <canvas class="waveform-canvas" id="waveform-canvas-paused"></canvas>
+          <div class="audio-clock" id="audio-clock"></div>
+        </div>
+        <div class="audio-note">Reconstruction from a real transcript</div>
+      </section>
+
+      <!-- 7. Waveform playing -->
+      <section class="slide waveform-slide" id="slide-6">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="waveform-wrap">
+          <canvas class="waveform-canvas" id="waveform-canvas-playing"></canvas>
+          <div class="audio-clock" id="audio-clock-running"></div>
+        </div>
+        <div class="audio-note">Reconstruction from a real transcript</div>
+      </section>
+
+      <!-- 8. Black -->
+      <section class="slide no-logo" id="slide-7">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 9. Reveal -->
+      <section class="slide reveal-slide" id="slide-8">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="verdict">STRONG PASS</div>
+        <div class="rationale">
+          <div>Strong evidence across the interview</div>
+          <div>Strong role alignment</div>
+          <div>Recommended to advance</div>
+        </div>
+      </section>
+
+      <!-- 10. Black -->
+      <section class="slide no-logo" id="slide-9">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 11. The Line -->
+      <section class="slide manifesto-slide" id="slide-10">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <h2>WE PROTECTED<br>THE WRONG HALF.</h2>
+      </section>
+
+      <!-- 12. Candidate Verbatim -->
+      <section class="slide verbatim-slide" id="slide-11">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="verbatim-quote-wrap">
+          <blockquote>“I didn't get the role, but every step was explained. I knew exactly where I stood. That kind of respect is rare.”</blockquote>
+          <div class="verbatim-role">— Senior Product Candidate</div>
+        </div>
+        <div class="verbatim-figures">
+          <div class="figure-item">
+            <div class="figure-value">139,520</div>
+            <div class="figure-label">minutes of Round 1 interviews</div>
+          </div>
+          <div class="figure-item">
+            <div class="figure-value">77%</div>
+            <div class="figure-label">candidate satisfaction till date</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13. Black -->
+      <section class="slide no-logo" id="slide-12">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 14. Closing Question -->
+      <section class="slide closing-slide" id="slide-13">
+        <div class="slide-logo closing-logo">
+          <img class="full-logo" src="Public/tidyhire_logo_dark.svg" alt="TidyHire">
+        </div>
+        <h2>Which half of your most expensive process is ritual wearing the costume of judgment?</h2>
+      </section>
+
+      <!-- 15. Blank (Final) -->
+      <section class="slide no-logo" id="slide-14">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const states = [
+        'title', 'black1', 'timer-paused', 'timer-running',
+        'black2', 'waveform-paused', 'waveform-playing', 'black3',
+        'reveal', 'black4', 'the-line', 'verbatim', 'black5', 'closing', 'black6'
+      ];
+
+      const slides = states.map((_, i) => document.getElementById(`slide-${i}`));
+      let current = 0;
+      let timerStart = null;
+      let timerRaf = null;
+      const TIMER_DURATION = 90;
+
+      let audioCtx = null;
+      let audioEl = null;
+      let analyser = null;
+      let source = null;
+      let audioRaf = null;
+      let audioRunning = false;
+      let idleRaf = null;
+      const AUDIO_DURATION = 60;
+
+      // Equalizer configuration
+      const BAR_COUNT = 48;
+      const MAX_SEGMENTS = 14;
+
+      // Formant envelope profile for voice resonance during playback
+      const formantProfile = new Float32Array(BAR_COUNT);
+      for (let i = 0; i < BAR_COUNT; i++) {
+        const u = i / (BAR_COUNT - 1);
+        const p1 = 0.76 * Math.exp(-Math.pow((u - 0.35) / 0.08, 2));
+        const p2 = 0.90 * Math.exp(-Math.pow((u - 0.67) / 0.07, 2));
+        const s1 = 0.16 * Math.exp(-Math.pow((u - 0.21) / 0.04, 2));
+        const s2 = 0.14 * Math.exp(-Math.pow((u - 0.78) / 0.04, 2));
+        formantProfile[i] = Math.max(0.04, Math.min(1.0, 0.04 + p1 + p2 + s1 + s2));
+      }
+
+      // Initial levels are completely flat (0.0 = 1 baseline segment)
+      const currentLevels = new Float32Array(BAR_COUNT);
+      const targetLevels = new Float32Array(BAR_COUNT);
+      for (let i = 0; i < BAR_COUNT; i++) {
+        currentLevels[i] = 0.0;
+        targetLevels[i] = 0.0;
+      }
+
+      let clickCount = 0;
+      let clickTimer = null;
+      const DBL_CLICK_WINDOW = 300;
+
+      function formatTime(totalSeconds) {
+        const s = Math.max(totalSeconds, 0);
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+      }
+
+      function renderClock(containerId, totalSeconds) {
+        const text = formatTime(totalSeconds);
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.innerHTML = '';
+        for (const char of text) {
+          const span = document.createElement('span');
+          span.className = 'timer-char';
+          span.textContent = char;
+          container.appendChild(span);
+        }
+      }
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+      }
+
+      function drawEqualizer(canvas, levels) {
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        if (rect.width === 0 || rect.height === 0) return;
+
+        const dpr = window.devicePixelRatio || 1;
+        const displayW = Math.round(rect.width * dpr);
+        const displayH = Math.round(rect.height * dpr);
+
+        if (canvas.width !== displayW || canvas.height !== displayH) {
+          canvas.width = displayW;
+          canvas.height = displayH;
+        }
+
+        const ctx = canvas.getContext('2d');
+        ctx.save();
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, rect.width, rect.height);
+
+        const W = rect.width;
+        const H = rect.height;
+        const n = levels.length;
+
+        // Gap and column width
+        const colGap = Math.max(2.5, W * 0.0075);
+        const colWidth = (W - (n - 1) * colGap) / n;
+
+        // Slimmer segment height & gap with ample top headroom
+        const segHeight = Math.max(1.8, Math.min(2.5, (H * 0.40) / MAX_SEGMENTS));
+        const segGap = Math.max(1.5, Math.min(2.0, segHeight * 0.75));
+        const radius = Math.min(0.8, segHeight / 2);
+
+        // 50% opacity white as requested
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+
+        for (let i = 0; i < n; i++) {
+          const x = i * (colWidth + colGap);
+          const lvl = Math.max(0, Math.min(1, levels[i]));
+          const activeSegments = Math.max(1, Math.round(lvl * MAX_SEGMENTS));
+
+          for (let s = 0; s < activeSegments; s++) {
+            const y = H - 2 - (s + 1) * segHeight - s * segGap;
+            ctx.beginPath();
+            if (ctx.roundRect) {
+              ctx.roundRect(x, y, colWidth, segHeight, radius);
+            } else {
+              ctx.rect(x, y, colWidth, segHeight);
+            }
+            ctx.fill();
+          }
+        }
+
+        ctx.restore();
+      }
+
+      function updateEqualizer(time, isLivePlaying) {
+        const t = time ? time / 1000 : 0;
+        let data = null;
+        let hasAudio = false;
+
+        if (analyser && isLivePlaying && audioEl && !audioEl.paused) {
+          data = new Uint8Array(analyser.frequencyBinCount);
+          analyser.getByteFrequencyData(data);
+          for (let k = 1; k < 60; k++) {
+            if (data[k] > 0) { hasAudio = true; break; }
+          }
+        }
+
+        if (hasAudio && audioCtx) {
+          const sampleRate = audioCtx.sampleRate || 44100;
+          const binFreq = sampleRate / analyser.fftSize;
+
+          let voiceSum = 0;
+          let voiceBins = 0;
+          const minBin = Math.max(1, Math.floor(100 / binFreq));
+          const maxBin = Math.min(data.length - 1, Math.floor(4000 / binFreq));
+          for (let b = minBin; b <= maxBin; b++) {
+            voiceSum += data[b];
+            voiceBins++;
+          }
+          const voiceEnergy = voiceBins > 0 ? (voiceSum / voiceBins) / 255 : 0;
+          const isVoicing = voiceEnergy > 0.02;
+
+          for (let i = 0; i < BAR_COUNT; i++) {
+            const u = i / (BAR_COUNT - 1);
+            const freq = 80 * Math.pow(7500 / 80, u);
+            const centerBin = freq / binFreq;
+            const bStart = Math.max(1, Math.min(data.length - 1, Math.floor(centerBin - 1)));
+            const bEnd = Math.max(bStart, Math.min(data.length - 1, Math.ceil(centerBin + 1)));
+
+            let binVal = 0;
+            for (let b = bStart; b <= bEnd; b++) {
+              binVal += data[b];
+            }
+            binVal = (binVal / (bEnd - bStart + 1)) / 255;
+
+            const tLeft = Math.min(1.0, u / 0.16);
+            const tRight = Math.min(1.0, (1.0 - u) / 0.16);
+            const edgeTaper = tLeft * tRight;
+
+            const p1Weight = 0.85 * Math.exp(-Math.pow((u - 0.35) / 0.09, 2));
+            const p2Weight = 1.05 * Math.exp(-Math.pow((u - 0.67) / 0.08, 2));
+            const formantWeight = edgeTaper * (0.28 + p1Weight + p2Weight);
+
+            if (isVoicing) {
+              const flutter = 0.05 * Math.sin(u * 18 + t * 9.2) + 0.03 * Math.sin(u * 30 - t * 13);
+              const dynamicVal = (binVal * formantWeight * 0.85) + (voiceEnergy * formantProfile[i] * 0.45) + flutter * voiceEnergy;
+              targetLevels[i] = Math.max(0.0, Math.min(0.92, dynamicVal));
+            } else {
+              targetLevels[i] = 0.0;
+            }
+          }
+        } else if (isLivePlaying && audioEl && !audioEl.paused) {
+          // Fallback simulation during active playback
+          for (let i = 0; i < BAR_COUNT; i++) {
+            const u = i / (BAR_COUNT - 1);
+            const dynamicMod = 0.28 * Math.sin(u * Math.PI * 4 + t * 4.2)
+                             + 0.16 * Math.sin(u * Math.PI * 9 - t * 6.8)
+                             + 0.08 * Math.sin(u * Math.PI * 16 + t * 10.5);
+            const speechPulse = 0.5 + 0.5 * Math.sin(t * 3.2);
+            targetLevels[i] = Math.max(0.0, Math.min(0.92,
+              formantProfile[i] * (0.35 + 0.65 * speechPulse) + dynamicMod * 0.25
+            ));
+          }
+        } else {
+          // Flat baseline (0.0 = 1 base segment) when paused/idle
+          for (let i = 0; i < BAR_COUNT; i++) {
+            targetLevels[i] = 0.0;
+          }
+        }
+
+        // Fast attack (~0.70) on speech, smooth decay (~0.84)
+        for (let i = 0; i < BAR_COUNT; i++) {
+          if (targetLevels[i] > currentLevels[i]) {
+            currentLevels[i] += (targetLevels[i] - currentLevels[i]) * 0.70;
+          } else {
+            currentLevels[i] = Math.max(targetLevels[i], currentLevels[i] * 0.84 - 0.02);
+          }
+        }
+      }
+
+      function playTickSound(isAlternate) {
+        try {
+          if (!audioCtx) {
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          }
+          if (audioCtx.state === 'suspended') {
+            audioCtx.resume();
+          }
+
+          const now = audioCtx.currentTime;
+
+          // Very low volume master gain as requested
+          const masterGain = audioCtx.createGain();
+          masterGain.gain.setValueAtTime(0.025, now);
+          masterGain.connect(audioCtx.destination);
+
+          // Subtle mechanical click oscillator
+          const osc = audioCtx.createOscillator();
+          const oscGain = audioCtx.createGain();
+          const freq = isAlternate ? 1050 : 1380;
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now);
+          osc.frequency.exponentialRampToValueAtTime(freq * 0.5, now + 0.015);
+
+          oscGain.gain.setValueAtTime(1.0, now);
+          oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+
+          osc.connect(oscGain);
+          oscGain.connect(masterGain);
+
+          osc.start(now);
+          osc.stop(now + 0.018);
+
+          // Micro transient noise click
+          const bufferSize = Math.floor(audioCtx.sampleRate * 0.005);
+          const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const output = noiseBuffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            output[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+          }
+          const noise = audioCtx.createBufferSource();
+          noise.buffer = noiseBuffer;
+
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'bandpass';
+          filter.frequency.setValueAtTime(isAlternate ? 2200 : 3000, now);
+          filter.Q.setValueAtTime(3.5, now);
+
+          noise.connect(filter);
+          filter.connect(masterGain);
+
+          noise.start(now);
+          noise.stop(now + 0.006);
+        } catch (e) {
+          // Ignore if audio is uninitialized
+        }
+      }
+
+      function startTimer() {
+        if (timerStart !== null) return;
+        timerStart = performance.now();
+        let lastSecond = -1;
+
+        function tick() {
+          if (states[current] !== 'timer-running') return;
+          const elapsed = (performance.now() - timerStart) / 1000;
+          const remaining = Math.max(TIMER_DURATION - elapsed, 0);
+          const currentSecond = Math.floor(remaining);
+
+          renderClock('timer-display-running', remaining);
+
+          // Play subtle tick on second change
+          if (currentSecond !== lastSecond && remaining > 0) {
+            playTickSound(currentSecond % 2 === 0);
+            lastSecond = currentSecond;
+          }
+
+          if (remaining > 0 && states[current] === 'timer-running') {
+            timerRaf = requestAnimationFrame(tick);
+          }
+        }
+        tick();
+      }
+
+      function tickAudio() {
+        if (!audioRunning) return;
+        const now = performance.now();
+        const elapsed = audioEl ? Math.min(audioEl.currentTime, AUDIO_DURATION) : AUDIO_DURATION;
+        updateEqualizer(now, true);
+
+        const playingCanvas = document.getElementById('waveform-canvas-playing');
+        drawEqualizer(playingCanvas, currentLevels);
+        renderClock('audio-clock-running', elapsed);
+
+        if (elapsed < AUDIO_DURATION && audioEl && !audioEl.paused) {
+          audioRaf = requestAnimationFrame(tickAudio);
+        } else {
+          audioRunning = false;
+          if (audioRaf) cancelAnimationFrame(audioRaf);
+        }
+      }
+
+      function tickIdle() {
+        const now = performance.now();
+        const curState = states[current];
+
+        if (curState === 'waveform-paused') {
+          updateEqualizer(now, false);
+          const pausedCanvas = document.getElementById('waveform-canvas-paused');
+          drawEqualizer(pausedCanvas, currentLevels);
+        }
+
+        if (curState === 'waveform-paused' || !audioRunning) {
+          idleRaf = requestAnimationFrame(tickIdle);
+        }
+      }
+
+      function initAudioGraph() {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (!analyser && audioCtx) {
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 512;
+          analyser.smoothingTimeConstant = 0.80;
+        }
+      }
+
+      function startAudio() {
+        if (audioEl) {
+          resumeAudio();
+          return;
+        }
+        audioEl = document.createElement('audio');
+        audioEl.src = 'audio/interview_reconstruction.mp3';
+        audioEl.preload = 'auto';
+        audioEl.style.display = 'none';
+        document.body.appendChild(audioEl);
+
+        initAudioGraph();
+
+        // Only attach createMediaElementSource on http/https where CORS is permitted.
+        // On file://, createMediaElementSource silences audio output due to browser security restrictions.
+        const isHttp = window.location.protocol.startsWith('http');
+        if (isHttp && audioCtx && analyser) {
+          try {
+            source = audioCtx.createMediaElementSource(audioEl);
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+          } catch (err) {
+            console.warn('Web Audio graph connection failed; playing directly.', err);
+          }
+        }
+
+        audioEl.addEventListener('ended', () => {
+          audioRunning = false;
+          if (audioRaf) cancelAnimationFrame(audioRaf);
+        });
+
+        audioEl.addEventListener('error', (e) => {
+          console.error('Audio load error:', e);
+        });
+
+        resumeAudio();
+      }
+
+      function resumeAudio() {
+        if (!audioEl) return;
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        audioEl.play()
+          .then(() => {
+            audioRunning = true;
+            if (audioRaf) cancelAnimationFrame(audioRaf);
+            tickAudio();
+          })
+          .catch(err => console.error('Audio play failed:', err));
+      }
+
+      function pauseAudio() {
+        if (audioEl && !audioEl.paused) {
+          audioEl.pause();
+        }
+        audioRunning = false;
+        if (audioRaf) cancelAnimationFrame(audioRaf);
+      }
+
+      function stopAudio() {
+        pauseAudio();
+      }
+
+      function advance() {
+        if (current >= slides.length - 1) return;
+
+        // Stop timer when leaving timer-running.
+        if (states[current] === 'timer-running') {
+          if (timerRaf) cancelAnimationFrame(timerRaf);
+        }
+
+        // Stop audio when leaving the waveform slide.
+        if (states[current] === 'waveform-playing') {
+          stopAudio();
+        }
+
+        current += 1;
+        showSlide(current);
+
+        if (states[current] === 'timer-running') {
+          startTimer();
+        }
+
+        if (states[current] === 'waveform-playing') {
+          startAudio();
+        }
+      }
+
+      let longPressTimer = null;
+      let isLongPress = false;
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      function startLongPress(e) {
+        isLongPress = false;
+        const pt = e.touches ? e.touches[0] : e;
+        touchStartX = pt.clientX;
+        touchStartY = pt.clientY;
+
+        clearTimeout(longPressTimer);
+        longPressTimer = setTimeout(() => {
+          isLongPress = true;
+          toggleFullscreen();
+        }, 3000);
+      }
+
+      function moveLongPress(e) {
+        if (!longPressTimer) return;
+        const pt = e.touches ? e.touches[0] : e;
+        const dx = Math.abs(pt.clientX - touchStartX);
+        const dy = Math.abs(pt.clientY - touchStartY);
+        if (dx > 15 || dy > 15) {
+          clearTimeout(longPressTimer);
+        }
+      }
+
+      function endLongPress() {
+        clearTimeout(longPressTimer);
+      }
+
+      function handleClick(e) {
+        if (isLongPress) {
+          isLongPress = false;
+          return;
+        }
+
+        if (states[current] === 'waveform-playing') {
+          clickCount++;
+          if (clickCount === 1) {
+            clickTimer = setTimeout(() => {
+              if (audioEl && audioEl.paused && audioEl.currentTime < AUDIO_DURATION) {
+                resumeAudio();
+              } else {
+                pauseAudio();
+              }
+              clickCount = 0;
+            }, DBL_CLICK_WINDOW);
+          } else if (clickCount === 2) {
+            clearTimeout(clickTimer);
+            clickCount = 0;
+            stopAudio();
+            advance(); // Advances directly to the blank black slide (slide-7)
+          }
+        } else {
+          advance();
+        }
+      }
+
+      function lockLandscape() {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock('landscape').catch(() => {});
+        }
+      }
+
+      function toggleFullscreen() {
+        if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+          const docEl = document.documentElement;
+          if (docEl.requestFullscreen) {
+            docEl.requestFullscreen().then(lockLandscape).catch(() => {});
+          } else if (docEl.webkitRequestFullscreen) {
+            docEl.webkitRequestFullscreen();
+            lockLandscape();
+          } else if (docEl.webkitEnterFullscreen) {
+            docEl.webkitEnterFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          }
+        }
+      }
+
+      function handleKey(e) {
+        if (e.code === 'KeyF' || e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          toggleFullscreen();
+        } else if (e.code === 'Space' || e.code === 'ArrowRight') {
+          e.preventDefault();
+          advance();
+        }
+      }
+
+      // Initial renders
+      renderClock('timer-display', TIMER_DURATION);
+      renderClock('timer-display-running', TIMER_DURATION);
+      renderClock('audio-clock', 0);
+      renderClock('audio-clock-running', 0);
+
+      // Render initial flat baseline on paused canvas
+      const pausedCanvas = document.getElementById('waveform-canvas-paused');
+      drawEqualizer(pausedCanvas, currentLevels);
+      tickIdle();
+
+      // Handle window resize to keep canvases sharp and responsive
+      window.addEventListener('resize', () => {
+        const curState = states[current];
+        if (curState === 'waveform-paused') {
+          drawEqualizer(document.getElementById('waveform-canvas-paused'), currentLevels);
+        } else if (curState === 'waveform-playing') {
+          drawEqualizer(document.getElementById('waveform-canvas-playing'), currentLevels);
+        }
+      });
+
+      document.addEventListener('touchstart', startLongPress, { passive: true });
+      document.addEventListener('touchmove', moveLongPress, { passive: true });
+      document.addEventListener('touchend', endLongPress, { passive: true });
+      document.addEventListener('touchcancel', endLongPress, { passive: true });
+
+      document.addEventListener('mousedown', startLongPress);
+      document.addEventListener('mousemove', moveLongPress);
+      document.addEventListener('mouseup', endLongPress);
+
+      document.addEventListener('click', handleClick);
+      document.addEventListener('dblclick', (e) => {
+        if (states[current] === 'waveform-playing') {
+          e.preventDefault();
+        }
+      });
+      document.addEventListener('keydown', handleKey);
+    })();
+  </script>
+</body>
+</html>
