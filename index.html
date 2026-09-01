@@ -123,7 +123,8 @@
     }
 
     .short-logo {
-      width: clamp(22px, 2.4cqw, 36px);
+      width: 2.6cqw;
+      min-width: 22px;
       height: auto;
       display: block;
     }
@@ -133,45 +134,27 @@
     }
 
     .full-logo {
-      width: clamp(110px, 14cqw, 180px);
+      width: 14cqw;
+      min-width: 110px;
       height: auto;
       display: block;
     }
 
     /* Title slide */
     .title-slide {
-      justify-content: space-between;
+      justify-content: center;
       align-items: flex-start;
       text-align: left;
     }
 
     .title-slide h1 {
       font-family: 'Big Shoulders Display', Arial, sans-serif;
-      font-size: clamp(3.2rem, 8.5cqw, 9.5rem);
+      font-size: 8.5cqw;
       font-weight: 800;
       line-height: 0.92;
       letter-spacing: -0.02em;
       max-width: 85%;
-      margin-top: 6%;
-    }
-
-    .title-slide .speaker {
-      margin-top: auto;
-    }
-
-    .title-slide .name {
-      font-family: 'Archivo', Arial, sans-serif;
-      font-size: clamp(1rem, 2.2cqw, 1.8rem);
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-
-    .title-slide .role {
-      font-family: 'Archivo', Arial, sans-serif;
-      margin-top: 0.25em;
-      font-size: clamp(0.8rem, 1.6cqw, 1.25rem);
-      font-weight: 400;
-      opacity: 0.7;
+      margin: 0;
     }
 
     /* Timer slides */
@@ -182,7 +165,7 @@
 
     .timer-display {
       font-family: 'Dosis', monospace, sans-serif;
-      font-size: clamp(5rem, 18cqw, 16rem);
+      font-size: 17cqw;
       font-weight: 600;
       letter-spacing: 0.02em;
       line-height: 1;
@@ -203,23 +186,22 @@
 
     .waveform-wrap {
       width: 58%;
-      max-width: 620px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: clamp(18px, 3.2cqw, 36px);
+      gap: 3.2cqw;
     }
 
     .waveform-canvas {
       width: 100%;
-      height: clamp(80px, 12cqw, 120px);
+      height: 10cqw;
       display: block;
     }
 
     .audio-clock {
       font-family: 'Dosis', monospace, sans-serif;
-      font-size: clamp(1.5rem, 4cqw, 3.5rem);
+      font-size: 4cqw;
       font-weight: 600;
       letter-spacing: 0.02em;
       opacity: 0.8;
@@ -236,7 +218,7 @@
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Archivo', Arial, sans-serif;
-      font-size: clamp(0.5rem, 1cqw, 0.75rem);
+      font-size: 0.95cqw;
       font-weight: 500;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -252,24 +234,11 @@
 
     .reveal-slide .verdict {
       font-family: 'Big Shoulders Display', Arial, sans-serif;
-      font-size: clamp(4rem, 12cqw, 12rem);
+      font-size: 13cqw;
       font-weight: 900;
       line-height: 0.9;
       letter-spacing: -0.02em;
       color: #FFFFFF;
-    }
-
-    .reveal-slide .rationale {
-      margin-top: 4%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5em;
-      font-family: 'Archivo', Arial, sans-serif;
-      font-size: clamp(0.85rem, 1.45cqw, 1.25rem);
-      font-weight: 400;
-      line-height: 1.5;
-      letter-spacing: 0.01em;
-      color: rgba(255, 255, 255, 0.7);
     }
 
     /* Manifesto slide */
@@ -281,7 +250,7 @@
 
     .manifesto-slide h2 {
       font-family: 'Big Shoulders Display', Arial, sans-serif;
-      font-size: clamp(3.2rem, 9.5cqw, 10rem);
+      font-size: 9.5cqw;
       font-weight: 900;
       line-height: 0.92;
       letter-spacing: -0.02em;
@@ -305,7 +274,7 @@
 
     .verbatim-slide blockquote {
       font-family: 'Big Shoulders Display', Arial, sans-serif;
-      font-size: clamp(1.8rem, 4.2cqw, 4.2rem);
+      font-size: 4.4cqw;
       font-weight: 700;
       line-height: 1.1;
       letter-spacing: -0.01em;
@@ -317,7 +286,7 @@
       text-align: right;
       margin-top: 2%;
       font-family: 'Archivo', Arial, sans-serif;
-      font-size: clamp(0.85rem, 1.3cqw, 1.15rem);
+      font-size: 1.4cqw;
       font-style: italic;
       font-weight: 500;
       letter-spacing: 0.02em;
@@ -327,7 +296,7 @@
     .verbatim-figures {
       margin-top: auto;
       display: flex;
-      gap: clamp(3rem, 7cqw, 7rem);
+      gap: 6.5cqw;
       align-items: flex-start;
     }
 
@@ -339,7 +308,7 @@
 
     .figure-value {
       font-family: 'Archivo', sans-serif;
-      font-size: clamp(1.9rem, 4cqw, 4.2rem);
+      font-size: 6.2cqw;
       font-weight: 700;
       line-height: 1.0;
       letter-spacing: -0.02em;
@@ -347,9 +316,9 @@
     }
 
     .figure-label {
-      margin-top: 0.45em;
+      margin-top: 0.5em;
       font-family: 'Archivo', Arial, sans-serif;
-      font-size: clamp(0.68rem, 1.05cqw, 0.92rem);
+      font-size: 1.25cqw;
       font-weight: 400;
       letter-spacing: 0.02em;
       color: rgba(255, 255, 255, 0.7);
@@ -362,22 +331,361 @@
       text-align: left;
     }
 
-    .closing-slide .closing-logo {
-      position: absolute;
-      bottom: calc(5.5% + 80px);
-      right: 6%;
-      left: auto;
-      top: auto;
-      margin-bottom: 0;
-    }
-
     .closing-slide h2 {
       font-family: 'Big Shoulders Display', Arial, sans-serif;
-      font-size: clamp(2.4rem, 6.2cqw, 6.5rem);
+      font-size: 6.2cqw;
       font-weight: 800;
       line-height: 1.02;
       letter-spacing: -0.015em;
       max-width: 90%;
+    }
+
+    /* Candidate Report slide */
+    .report-slide {
+      align-items: center;
+      justify-content: center;
+      padding: 1.8% 5%;
+    }
+
+    .report-card {
+      width: 60cqw;
+      height: 39.5cqw;
+      background: #121215;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 1.4cqw;
+      padding: 1.6cqw 2cqw 1.2cqw 2cqw;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85cqw;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+      mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 95%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 95%);
+    }
+
+    .report-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.8cqw;
+    }
+
+    /* Left Photo */
+    .report-photo-wrap {
+      width: 7.2cqw;
+      height: 7.2cqw;
+      flex-shrink: 0;
+      border-radius: 50%;
+      padding: 0.22cqw;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .report-candidate-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    /* Middle Details (replaces '72' position) */
+    .report-details-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45cqw;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .report-candidate-name {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: 2.3cqw;
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: #FFFFFF;
+    }
+
+    .report-candidate-contacts {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.85cqw;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3em 0.6em;
+      margin-bottom: 0.1cqw;
+    }
+
+    .contact-sep {
+      opacity: 0.4;
+    }
+
+    .report-meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4cqw 0.55cqw;
+    }
+
+    .meta-item {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.8cqw;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45em;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.32em 0.75em;
+      border-radius: 0.4cqw;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .meta-label {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 400;
+    }
+
+    .meta-val {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .meta-val.highlight-ai {
+      color: #EA580C;
+    }
+
+    /* Right Score & Recommendation (replaces image position) */
+    .report-score-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.38cqw;
+      flex-shrink: 0;
+      padding-left: 0.6cqw;
+    }
+
+    .score-circle-container {
+      position: relative;
+      width: 7.2cqw;
+      height: 7.2cqw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .score-circle-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform: rotate(-90deg);
+    }
+
+    .score-ring-track {
+      stroke: rgba(255, 255, 255, 0.08);
+    }
+
+    .score-ring-bar {
+      stroke-dasharray: 339.3;
+      stroke-dashoffset: 339.3;
+      transition: stroke-dashoffset 1.3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+    }
+
+    .slide.active .score-ring-bar {
+      stroke-dashoffset: 30.5;
+    }
+
+    .score-ring-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .score-number {
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: 2.2cqw;
+      font-weight: 900;
+      line-height: 0.9;
+      color: #FFFFFF;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.5s ease 0.25s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.25s;
+    }
+
+    .slide.active .score-number {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .score-label {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.48cqw;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.45);
+      margin-top: 0.1cqw;
+    }
+
+    .report-verdict-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.78cqw;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #4ADE80;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      padding: 0.18em 0.65em;
+      border-radius: 999px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.6s ease 0.6s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+    }
+
+    .slide.active .report-verdict-badge {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .badge-dot {
+      width: 0.4em;
+      height: 0.4em;
+      background: #4ADE80;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #4ADE80;
+    }
+
+    .report-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      margin: 0.15cqw 0;
+      width: 100%;
+    }
+
+    /* Summary section */
+    .report-summary-section {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35cqw;
+    }
+
+    .summary-title {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.85cqw;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #EA580C;
+      text-transform: uppercase;
+    }
+
+    .summary-content-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35cqw;
+    }
+
+    .summary-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4cqw;
+      padding: 0;
+      margin: 0;
+    }
+
+    .summary-list li {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.94cqw;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.88);
+      position: relative;
+      padding-left: 1.2em;
+    }
+
+    .summary-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #EA580C;
+      font-weight: bold;
+    }
+
+    .summary-list li strong {
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .summary-list li.masked-item {
+      color: rgba(255, 255, 255, 0.42);
+    }
+
+    .summary-list li.masked-item::before {
+      color: rgba(234, 88, 12, 0.42);
+    }
+
+    /* QR slide */
+    .qr-slide {
+      align-items: center;
+      justify-content: center;
+      padding: 5.5% 6%;
+    }
+
+    .qr-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1cqw;
+    }
+
+    .qr-heading {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 1.05cqw;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      text-align: center;
+    }
+
+    .qr-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .qr-image {
+      width: 19cqw;
+      height: 19cqw;
+      display: block;
+      object-fit: contain;
+    }
+
+    .qr-footer {
+      position: absolute;
+      bottom: 5.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .qr-footer .full-logo {
+      height: 2.3cqw;
+      width: auto;
+      display: block;
+      opacity: 0.95;
     }
   </style>
 </head>
@@ -402,10 +710,6 @@
           </svg>
         </div>
         <h1>ROUND ONE:<br>THE INTERVIEW<br>THAT NEVER CHANGED</h1>
-        <div class="speaker">
-          <div class="name">Javeed Ashraf Khan</div>
-          <div class="role">Co-founder &amp; CGPO, TidyHire</div>
-        </div>
       </section>
 
       <!-- 2. Black -->
@@ -498,16 +802,98 @@
             <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
           </svg>
         </div>
-        <div class="verdict">STRONG PASS</div>
-        <div class="rationale">
-          <div>Strong evidence across the interview</div>
-          <div>Strong role alignment</div>
-          <div>Recommended to advance</div>
+        <div class="verdict">STRONG FIT</div>
+      </section>
+
+      <!-- 10. Candidate Report -->
+      <section class="slide report-slide" id="slide-9">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+        <div class="report-card">
+          <!-- Top Row: Candidate Photo on Left, Details in Center (replaces 72), Score & Recommendation on Right -->
+          <div class="report-top-row">
+            <div class="report-photo-wrap">
+              <img class="report-candidate-photo" src="Public/Sara.png" alt="Candidate Photo">
+            </div>
+
+            <div class="report-details-col">
+              <div class="report-candidate-name">Sarah Jenkins</div>
+              <div class="report-candidate-contacts">
+                <span>sarah.jenkins@example.com</span>
+                <span class="contact-sep">•</span>
+                <span>+1 (555) 382-9104</span>
+              </div>
+              <div class="report-meta-grid">
+                <div class="meta-item">
+                  <span class="meta-label">Job:</span>
+                  <span class="meta-val">Lead E-Commerce</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Company:</span>
+                  <span class="meta-val">XYZ Ltd.</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Interviewer:</span>
+                  <span class="meta-val highlight-ai">Charlie (AI Interviewer)</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Duration:</span>
+                  <span class="meta-val">58m 7s</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="report-score-section">
+              <div class="score-circle-container">
+                <svg viewBox="0 0 130 130" class="score-circle-svg">
+                  <defs>
+                    <linearGradient id="scoreRingGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#EF4444" />
+                      <stop offset="30%" stop-color="#EA580C" />
+                      <stop offset="65%" stop-color="#EAB308" />
+                      <stop offset="100%" stop-color="#22C55E" />
+                    </linearGradient>
+                  </defs>
+                  <circle class="score-ring-track" cx="65" cy="65" r="54" fill="none" stroke-width="8" />
+                  <circle class="score-ring-bar" cx="65" cy="65" r="54" fill="none" stroke="url(#scoreRingGrad)" stroke-width="8" stroke-linecap="round" />
+                </svg>
+                <div class="score-ring-inner">
+                  <div class="score-number">91%</div>
+                  <div class="score-label">MATCH SCORE</div>
+                </div>
+              </div>
+              <div class="report-verdict-badge">
+                <span class="badge-dot"></span>
+                STRONG FIT
+              </div>
+            </div>
+          </div>
+
+          <div class="report-divider"></div>
+
+          <!-- Bottom Section: Overall Summary (Top 3 points clear, rest masked) -->
+          <div class="report-summary-section">
+            <div class="summary-title">OVERALL SUMMARY</div>
+            <div class="summary-content-wrap">
+              <ul class="summary-list">
+                <li><strong>15+ Years Leadership:</strong> Fifteen years of ecommerce leadership across India, MENA, and China focused on zero to one builds, P&amp;L ownership, and scaling GMV significantly.</li>
+                <li><strong>$4B Business &amp; Quick Commerce:</strong> Led a $4B business at Noon, launched Super Mall quick commerce to $40M within 8 months, and scaled seller ecosystems.</li>
+                <li><strong>Margin Protection &amp; Leakage:</strong> Implemented pricing guardrails for promotions, closed $8M annual leakage, and established min/max competitive pricing to protect margins.</li>
+                <li class="masked-item">Built and tiered a 10,000 seller ecosystem at Club Factory, introduced per-seller scorecards, joint business plans, and high-touch interventions to reduce churn.</li>
+                <li class="masked-item">Scaled marketplace ad revenue through category campaigns and PLP monetization, pricing homepage and category placements and growing ad revenue from $1.3M to $2.4M.</li>
+                <li class="masked-item">Competency Evaluation: Strategic Planning (93%), Commercial Acumen (94%), Team Mentorship (89%), Analytical Execution (92%).</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- 10. Black -->
-      <section class="slide no-logo" id="slide-9">
+      <!-- 11. Black -->
+      <section class="slide no-logo" id="slide-10">
         <div class="slide-logo">
           <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
             <rect width="35" height="35" rx="6" fill="#EA580C"/>
@@ -516,8 +902,8 @@
         </div>
       </section>
 
-      <!-- 11. The Line -->
-      <section class="slide manifesto-slide" id="slide-10">
+      <!-- 12. The Line -->
+      <section class="slide manifesto-slide" id="slide-11">
         <div class="slide-logo">
           <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
             <rect width="35" height="35" rx="6" fill="#EA580C"/>
@@ -527,8 +913,18 @@
         <h2>WE PROTECTED<br>THE WRONG HALF.</h2>
       </section>
 
-      <!-- 12. Candidate Verbatim -->
-      <section class="slide verbatim-slide" id="slide-11">
+      <!-- 13. Black (after The Line) -->
+      <section class="slide no-logo" id="slide-12">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- 14. Candidate Verbatim -->
+      <section class="slide verbatim-slide" id="slide-13">
         <div class="slide-logo">
           <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
             <rect width="35" height="35" rx="6" fill="#EA580C"/>
@@ -542,17 +938,17 @@
         <div class="verbatim-figures">
           <div class="figure-item">
             <div class="figure-value">139,520</div>
-            <div class="figure-label">minutes of Round 1 interviews</div>
+            <div class="figure-label">Minutes of Round 1 interviews</div>
           </div>
           <div class="figure-item">
             <div class="figure-value">77%</div>
-            <div class="figure-label">candidate satisfaction till date</div>
+            <div class="figure-label">Candidate satisfaction year to date</div>
           </div>
         </div>
       </section>
 
-      <!-- 13. Black -->
-      <section class="slide no-logo" id="slide-12">
+      <!-- 15. Black -->
+      <section class="slide no-logo" id="slide-14">
         <div class="slide-logo">
           <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
             <rect width="35" height="35" rx="6" fill="#EA580C"/>
@@ -561,16 +957,32 @@
         </div>
       </section>
 
-      <!-- 14. Closing Question -->
-      <section class="slide closing-slide" id="slide-13">
-        <div class="slide-logo closing-logo">
-          <img class="full-logo" src="Public/tidyhire_logo_dark.svg" alt="TidyHire">
+      <!-- 16. Closing Question -->
+      <section class="slide closing-slide" id="slide-15">
+        <div class="slide-logo">
+          <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
+            <rect width="35" height="35" rx="6" fill="#EA580C"/>
+            <path d="M18.1424 26.7525C16.4562 26.7525 15.1249 26.2388 14.1486 25.2113C13.1945 24.1838 12.7175 22.7174 12.7175 20.8123L12.7175 13.2023H11.4528C11.2308 13.2023 11.0423 13.1381 10.8869 13.0097C10.7538 12.8598 10.6873 12.6779 10.6873 12.4637V11.7573C10.6873 11.265 10.9425 11.0188 11.4528 11.0188H12.0851C13.1058 11.0188 13.9823 10.7298 14.7144 10.1519C15.4466 9.5525 15.9236 8.76047 16.1455 7.77577C16.2565 7.21921 16.556 6.94092 17.0441 6.94092H17.8096C18.4087 6.94092 18.7082 7.21921 18.7082 7.77577V11.0188L22.1363 11.0188C22.3582 11.0188 22.5357 11.0937 22.6688 11.2436C22.8241 11.372 22.9018 11.5433 22.9018 11.7573V12.4637C22.9018 12.6779 22.8241 12.8598 22.6688 13.0097C22.5357 13.1381 22.3582 13.2023 22.1363 13.2023L18.7082 13.2023V20.9086C18.7082 21.4438 18.8525 21.8719 19.1409 22.1929C19.4294 22.4926 19.7843 22.6425 20.2059 22.6425C21.1601 22.6425 21.8922 22.2464 22.4026 21.4544C22.5578 21.2618 22.7354 21.1547 22.9351 21.1334C23.1348 21.0905 23.3012 21.1226 23.4343 21.2296C23.5896 21.3367 23.6672 21.4866 23.6672 21.6792C23.6672 23.0278 23.168 24.2159 22.1696 25.2433C21.1933 26.2495 19.851 26.7525 18.1424 26.7525Z" fill="#FFFFEB"/>
+          </svg>
         </div>
         <h2>Which half of your most expensive process is ritual wearing the costume of judgment?</h2>
       </section>
 
-      <!-- 15. Blank (Final) -->
-      <section class="slide no-logo" id="slide-14">
+      <!-- 17. QR Code -->
+      <section class="slide qr-slide" id="slide-16">
+        <div class="qr-group">
+          <div class="qr-heading">CONNECT WITH ME</div>
+          <div class="qr-container">
+            <img class="qr-image" src="Public/URL%20QR%20Code.svg" alt="Scan QR Code">
+          </div>
+        </div>
+        <div class="qr-footer">
+          <img class="full-logo" src="Public/tidyhire_logo_dark.svg" alt="TidyHire">
+        </div>
+      </section>
+
+      <!-- 18. Blank (Final) -->
+      <section class="slide no-logo" id="slide-17">
         <div class="slide-logo">
           <svg class="short-logo" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="TidyHire">
             <rect width="35" height="35" rx="6" fill="#EA580C"/>
@@ -589,7 +1001,8 @@
       const states = [
         'title', 'black1', 'timer-paused', 'timer-running',
         'black2', 'waveform-paused', 'waveform-playing', 'black3',
-        'reveal', 'black4', 'the-line', 'verbatim', 'black5', 'closing', 'black6'
+        'reveal', 'report', 'black4', 'the-line', 'black-line',
+        'verbatim', 'black5', 'closing', 'qr', 'black6'
       ];
 
       const slides = states.map((_, i) => document.getElementById(`slide-${i}`));
@@ -991,6 +1404,9 @@
 
       function stopAudio() {
         pauseAudio();
+        if (audioEl) {
+          audioEl.currentTime = 0;
+        }
       }
 
       function advance() {
@@ -999,6 +1415,7 @@
         // Stop timer when leaving timer-running.
         if (states[current] === 'timer-running') {
           if (timerRaf) cancelAnimationFrame(timerRaf);
+          timerStart = null;
         }
 
         // Stop audio when leaving the waveform slide.
@@ -1010,12 +1427,88 @@
         showSlide(current);
 
         if (states[current] === 'timer-running') {
+          timerStart = null;
           startTimer();
+        } else if (states[current] === 'timer-paused') {
+          timerStart = null;
+          renderClock('timer-display', TIMER_DURATION);
         }
 
         if (states[current] === 'waveform-playing') {
           startAudio();
+        } else if (states[current] === 'waveform-paused') {
+          stopAudio();
+          renderClock('audio-clock', 0);
+          const pausedCanvas = document.getElementById('waveform-canvas-paused');
+          drawEqualizer(pausedCanvas, currentLevels);
         }
+
+        if (states[current] === 'report') {
+          animateScore();
+        }
+      }
+
+      function previous() {
+        if (current <= 0) return;
+
+        // Stop timer when leaving timer-running.
+        if (states[current] === 'timer-running') {
+          if (timerRaf) cancelAnimationFrame(timerRaf);
+          timerStart = null;
+        }
+
+        // Stop audio when leaving the waveform slide.
+        if (states[current] === 'waveform-playing') {
+          stopAudio();
+        }
+
+        current -= 1;
+        showSlide(current);
+
+        if (states[current] === 'timer-running') {
+          timerStart = null;
+          startTimer();
+        } else if (states[current] === 'timer-paused') {
+          timerStart = null;
+          renderClock('timer-display', TIMER_DURATION);
+        }
+
+        if (states[current] === 'waveform-playing') {
+          startAudio();
+        } else if (states[current] === 'waveform-paused') {
+          stopAudio();
+          renderClock('audio-clock', 0);
+          const pausedCanvas = document.getElementById('waveform-canvas-paused');
+          drawEqualizer(pausedCanvas, currentLevels);
+        }
+
+        if (states[current] === 'report') {
+          animateScore();
+        }
+      }
+
+      function animateScore() {
+        const scoreEl = document.querySelector('.score-number');
+        if (!scoreEl) return;
+        scoreEl.textContent = '0%';
+        const start = performance.now();
+        const duration = 1200;
+        const target = 91;
+        function updateScore(now) {
+          if (states[current] !== 'report') return;
+          const progress = Math.min((now - start) / duration, 1);
+          const easeProgress = 1 - Math.pow(1 - progress, 3);
+          const currentVal = Math.round(easeProgress * target);
+          scoreEl.textContent = currentVal + '%';
+          if (progress < 1) {
+            requestAnimationFrame(updateScore);
+          }
+        }
+        setTimeout(() => {
+          if (states[current] === 'report') {
+            requestAnimationFrame(updateScore);
+          }
+        }, 300);
       }
 
       let longPressTimer = null;
@@ -1108,9 +1601,12 @@
         if (e.code === 'KeyF' || e.key === 'f' || e.key === 'F') {
           e.preventDefault();
           toggleFullscreen();
-        } else if (e.code === 'Space' || e.code === 'ArrowRight') {
+        } else if (e.code === 'Space' || e.code === 'ArrowRight' || e.key === 'ArrowRight') {
           e.preventDefault();
           advance();
+        } else if (e.code === 'ArrowLeft' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          previous();
         }
       }
 
