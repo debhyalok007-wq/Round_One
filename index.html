@@ -348,20 +348,20 @@
     }
 
     .report-card {
-      width: 60cqw;
-      height: 39.5cqw;
+      width: 61cqw;
+      height: 44cqw;
       background: #121215;
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 1.4cqw;
-      padding: 1.6cqw 2cqw 1.2cqw 2cqw;
+      padding: 1.5cqw 1.8cqw 1cqw 1.8cqw;
       display: flex;
       flex-direction: column;
-      gap: 0.85cqw;
+      gap: 0.7cqw;
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
       position: relative;
       overflow: hidden;
-      mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 95%);
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 95%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 97%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 97%);
     }
 
     .report-top-row {
@@ -570,26 +570,94 @@
       width: 100%;
     }
 
+    /* Skills breakdown row */
+    .report-skills-section {
+      display: flex;
+      flex-direction: column;
+      margin: 0.1cqw 0;
+    }
+
+    .skills-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.5cqw;
+    }
+
+    .skill-donut-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.25cqw;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .skill-donut-wrap {
+      position: relative;
+      width: 3.0cqw;
+      height: 3.0cqw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .skill-donut-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      transform: rotate(-90deg);
+    }
+
+    .skill-track {
+      stroke: rgba(255, 255, 255, 0.08);
+    }
+
+    .skill-bar {
+      stroke-dasharray: 100.5;
+      stroke-dashoffset: 100.5;
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
+    }
+
+    .slide.active .skill-bar.score-93 { stroke-dashoffset: 7.0; }
+    .slide.active .skill-bar.score-92 { stroke-dashoffset: 8.0; }
+    .slide.active .skill-bar.score-91 { stroke-dashoffset: 9.0; }
+    .slide.active .skill-bar.score-90 { stroke-dashoffset: 10.0; }
+    .slide.active .skill-bar.score-89 { stroke-dashoffset: 11.1; }
+
+    .skill-score {
+      position: absolute;
+      font-family: 'Big Shoulders Display', Arial, sans-serif;
+      font-size: 0.95cqw;
+      font-weight: 800;
+      color: #FFFFFF;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .skill-name {
+      font-family: 'Archivo', Arial, sans-serif;
+      font-size: 0.62cqw;
+      font-weight: 600;
+      line-height: 1.15;
+      color: rgba(255, 255, 255, 0.75);
+      text-align: center;
+      max-width: 9.8cqw;
+      word-wrap: break-word;
+    }
+
     /* Summary section */
     .report-summary-section {
       display: flex;
       flex-direction: column;
-      gap: 0.35cqw;
-    }
-
-    .summary-title {
-      font-family: 'Archivo', Arial, sans-serif;
-      font-size: 0.85cqw;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      color: #EA580C;
-      text-transform: uppercase;
+      gap: 0.3cqw;
     }
 
     .summary-content-wrap {
       display: flex;
       flex-direction: column;
-      gap: 0.35cqw;
+      gap: 0.3cqw;
     }
 
     .summary-list {
@@ -875,9 +943,100 @@
 
           <div class="report-divider"></div>
 
+          <!-- Skills Breakdown Row: 5 Small donuts with scores and skill names below -->
+          <div class="report-skills-section">
+            <div class="skills-row">
+              <div class="skill-donut-item">
+                <div class="skill-donut-wrap">
+                  <svg viewBox="0 0 40 40" class="skill-donut-svg">
+                    <defs>
+                      <linearGradient id="skillGrad1" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F97316" />
+                        <stop offset="100%" stop-color="#22C55E" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
+                    <circle class="skill-bar score-93" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad1)" stroke-width="3.2" stroke-linecap="round" />
+                  </svg>
+                  <span class="skill-score">93%</span>
+                </div>
+                <span class="skill-name">GMV Growth &amp; Strategy</span>
+              </div>
+
+              <div class="skill-donut-item">
+                <div class="skill-donut-wrap">
+                  <svg viewBox="0 0 40 40" class="skill-donut-svg">
+                    <defs>
+                      <linearGradient id="skillGrad2" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F97316" />
+                        <stop offset="100%" stop-color="#22C55E" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
+                    <circle class="skill-bar score-92" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad2)" stroke-width="3.2" stroke-linecap="round" />
+                  </svg>
+                  <span class="skill-score">92%</span>
+                </div>
+                <span class="skill-name">Marketplace &amp; Sellers</span>
+              </div>
+
+              <div class="skill-donut-item">
+                <div class="skill-donut-wrap">
+                  <svg viewBox="0 0 40 40" class="skill-donut-svg">
+                    <defs>
+                      <linearGradient id="skillGrad3" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F97316" />
+                        <stop offset="100%" stop-color="#22C55E" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
+                    <circle class="skill-bar score-91" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad3)" stroke-width="3.2" stroke-linecap="round" />
+                  </svg>
+                  <span class="skill-score">91%</span>
+                </div>
+                <span class="skill-name">Data-Driven Decisions</span>
+              </div>
+
+              <div class="skill-donut-item">
+                <div class="skill-donut-wrap">
+                  <svg viewBox="0 0 40 40" class="skill-donut-svg">
+                    <defs>
+                      <linearGradient id="skillGrad4" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F97316" />
+                        <stop offset="100%" stop-color="#22C55E" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
+                    <circle class="skill-bar score-90" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad4)" stroke-width="3.2" stroke-linecap="round" />
+                  </svg>
+                  <span class="skill-score">90%</span>
+                </div>
+                <span class="skill-name">Leadership &amp; Influence</span>
+              </div>
+
+              <div class="skill-donut-item">
+                <div class="skill-donut-wrap">
+                  <svg viewBox="0 0 40 40" class="skill-donut-svg">
+                    <defs>
+                      <linearGradient id="skillGrad5" x1="0%" y1="100%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#F97316" />
+                        <stop offset="100%" stop-color="#22C55E" />
+                      </linearGradient>
+                    </defs>
+                    <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
+                    <circle class="skill-bar score-89" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad5)" stroke-width="3.2" stroke-linecap="round" />
+                  </svg>
+                  <span class="skill-score">89%</span>
+                </div>
+                <span class="skill-name">Ad Monetisation</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="report-divider"></div>
+
           <!-- Bottom Section: Overall Summary (Top 3 points clear, rest masked) -->
           <div class="report-summary-section">
-            <div class="summary-title">OVERALL SUMMARY</div>
             <div class="summary-content-wrap">
               <ul class="summary-list">
                 <li><strong>15+ Years Leadership:</strong> Fifteen years of ecommerce leadership across India, MENA, and China focused on zero to one builds, P&amp;L ownership, and scaling GMV significantly.</li>
@@ -885,7 +1044,6 @@
                 <li><strong>Margin Protection &amp; Leakage:</strong> Implemented pricing guardrails for promotions, closed $8M annual leakage, and established min/max competitive pricing to protect margins.</li>
                 <li class="masked-item">Built and tiered a 10,000 seller ecosystem at Club Factory, introduced per-seller scorecards, joint business plans, and high-touch interventions to reduce churn.</li>
                 <li class="masked-item">Scaled marketplace ad revenue through category campaigns and PLP monetization, pricing homepage and category placements and growing ad revenue from $1.3M to $2.4M.</li>
-                <li class="masked-item">Competency Evaluation: Strategic Planning (93%), Commercial Acumen (94%), Team Mentorship (89%), Analytical Execution (92%).</li>
               </ul>
             </div>
           </div>
