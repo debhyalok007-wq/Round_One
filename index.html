@@ -383,8 +383,8 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
       position: relative;
       overflow: hidden;
-      mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 97%);
-      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 97%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.45) 84%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 68%, rgba(0, 0, 0, 0.45) 84%, transparent 100%);
     }
 
     .report-top-row {
@@ -517,7 +517,7 @@
     }
 
     .slide.active .score-ring-bar {
-      stroke-dashoffset: 30.5;
+      stroke-dashoffset: 64.5;
     }
 
     .score-ring-inner {
@@ -568,6 +568,7 @@
       border: 1px solid rgba(34, 197, 94, 0.4);
       padding: 0.18em 0.65em;
       border-radius: 999px;
+      margin-top: 0.4cqw;
       opacity: 0;
       transform: translateY(6px);
       transition: opacity 0.6s ease 0.6s, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
@@ -579,18 +580,18 @@
     }
 
     .badge-dot {
-      width: 0.4em;
-      height: 0.4em;
-      background: #4ADE80;
+      width: 0.38em;
+      height: 0.38em;
       border-radius: 50%;
-      box-shadow: 0 0 8px #4ADE80;
+      background: #22C55E;
+      box-shadow: 0 0 6px #22C55E;
     }
 
     .report-divider {
-      height: 1px;
-      background: rgba(255, 255, 255, 0.08);
-      margin: 0.15cqw 0;
       width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 15%, rgba(255, 255, 255, 0.1) 85%, transparent 100%);
+      margin: 0.1cqw 0;
     }
 
     /* Skills breakdown row */
@@ -643,11 +644,11 @@
       transition: stroke-dashoffset 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s;
     }
 
-    .slide.active .skill-bar.score-93 { stroke-dashoffset: 7.0; }
-    .slide.active .skill-bar.score-92 { stroke-dashoffset: 8.0; }
     .slide.active .skill-bar.score-91 { stroke-dashoffset: 9.0; }
-    .slide.active .skill-bar.score-90 { stroke-dashoffset: 10.0; }
-    .slide.active .skill-bar.score-89 { stroke-dashoffset: 11.1; }
+    .slide.active .skill-bar.score-86 { stroke-dashoffset: 14.1; }
+    .slide.active .skill-bar.score-79 { stroke-dashoffset: 21.1; }
+    .slide.active .skill-bar.score-75 { stroke-dashoffset: 25.1; }
+    .slide.active .skill-bar.score-73 { stroke-dashoffset: 27.1; }
 
     .skill-score {
       position: absolute;
@@ -674,31 +675,31 @@
     .report-summary-section {
       display: flex;
       flex-direction: column;
-      gap: 0.3cqw;
+      gap: 0.4cqw;
     }
 
     .summary-content-wrap {
       display: flex;
       flex-direction: column;
-      gap: 0.3cqw;
+      gap: 0.4cqw;
     }
 
     .summary-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 0.4cqw;
+      gap: 0.95cqw;
       padding: 0;
       margin: 0;
     }
 
     .summary-list li {
       font-family: 'Archivo', Arial, sans-serif;
-      font-size: 0.94cqw;
-      line-height: 1.35;
+      font-size: 0.92cqw;
+      line-height: 1.42;
       color: rgba(255, 255, 255, 0.88);
       position: relative;
-      padding-left: 1.2em;
+      padding-left: 1.25em;
     }
 
     .summary-list li::before {
@@ -715,11 +716,17 @@
     }
 
     .summary-list li.masked-item {
-      color: rgba(255, 255, 255, 0.42);
+      opacity: 0.22;
+      filter: blur(0.6px);
+      user-select: none;
+    }
+
+    .summary-list li.masked-item strong {
+      color: inherit;
     }
 
     .summary-list li.masked-item::before {
-      color: rgba(234, 88, 12, 0.42);
+      opacity: 0.5;
     }
 
     /* QR slide */
@@ -922,11 +929,11 @@
             </div>
 
             <div class="report-details-col">
-              <div class="report-candidate-name">Stephen Doe</div>
+              <div class="report-candidate-name">Step•••• D••</div>
               <div class="report-candidate-contacts">
-                <span>stephen.doe@example.com</span>
+                <span>step••••••@example.com</span>
                 <span class="contact-sep">•</span>
-                <span>+1 (555) 382-9104</span>
+                <span>+1 (555) •••-9104</span>
               </div>
               <div class="report-meta-grid">
                 <div class="meta-item">
@@ -963,7 +970,7 @@
                   <circle class="score-ring-bar" cx="65" cy="65" r="54" fill="none" stroke="url(#scoreRingGrad)" stroke-width="8" stroke-linecap="round" />
                 </svg>
                 <div class="score-ring-inner">
-                  <div class="score-number">91%</div>
+                  <div class="score-number">81%</div>
                   <div class="score-label">MATCH SCORE</div>
                 </div>
               </div>
@@ -989,11 +996,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-93" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad1)" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-91" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad1)" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
-                  <span class="skill-score">93%</span>
+                  <span class="skill-score">91%</span>
                 </div>
-                <span class="skill-name">Java &amp; JVM Engineering</span>
+                <span class="skill-name">Java</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1006,11 +1013,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-92" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad2)" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-86" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad2)" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
-                  <span class="skill-score">92%</span>
+                  <span class="skill-score">86%</span>
                 </div>
-                <span class="skill-name">Distributed Systems Architecture</span>
+                <span class="skill-name">Spring</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1023,11 +1030,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-91" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad3)" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-79" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad3)" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
-                  <span class="skill-score">91%</span>
+                  <span class="skill-score">79%</span>
                 </div>
-                <span class="skill-name">Microservices &amp; Cloud Architecture</span>
+                <span class="skill-name">Hibernate</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1040,11 +1047,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-90" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-75" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad4)" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
-                  <span class="skill-score">90%</span>
+                  <span class="skill-score">75%</span>
                 </div>
-                <span class="skill-name">Performance &amp; Scalability</span>
+                <span class="skill-name">AWS</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1057,11 +1064,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-89" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad5)" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-73" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad5)" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
-                  <span class="skill-score">89%</span>
+                  <span class="skill-score">73%</span>
                 </div>
-                <span class="skill-name">Concurrency &amp; Multithreading</span>
+                <span class="skill-name">RESTful APIs</span>
               </div>
             </div>
           </div>
@@ -1072,11 +1079,11 @@
           <div class="report-summary-section">
             <div class="summary-content-wrap">
               <ul class="summary-list">
-                <li><strong>12+ Years Backend Engineering:</strong> 12 years of backend development experience, including six years working on a managed Kafka service at cloud scale and five years as a Staff Engineer in payments.</li>
-                <li><strong>High-Scale Distributed Systems:</strong> Demonstrated strong knowledge of optimistic vs. pessimistic locking, Saga orchestration/choreography, eventual consistency, compensating transactions, and high-throughput architectures.</li>
-                <li><strong>AWS &amp; Microservices Migration:</strong> Provided a detailed zero-downtime migration strategy using the Strangler Fig pattern, API Gateway/proxy routing, feature flags, traffic shadowing, dedicated databases, and CDC with Debezium + Kafka.</li>
-                <li class="masked-item"><strong>Advanced Production Debugging:</strong> Diagnosed a real JVM metaspace leak and thread-contention issue using JMX, Grafana, JMAP, JCMD, Eclipse MAT, and JStack, identifying a class-loader leak and inefficient caching as root causes.</li>
-                <li class="masked-item"><strong>Strong Technical Depth:</strong> Demonstrated strong conceptual understanding of concurrent token-bucket rate limiting and atomic operations with deep architectural foundation.</li>
+                <li><strong>12+ Years Backend Experience:</strong> Backend engineer with twelve years experience, Master's from Czech Technical University, six years at a large cloud provider, five years in payments.</li>
+                <li><strong>Managed Kafka &amp; Ledger Systems:</strong> Operated managed Kafka services at scale handling tens of thousands of transactions per second; led payments ledger systems with significant on-call operational responsibilities.</li>
+                <li><strong>Java, Spring &amp; CDC Pipelines:</strong> Demonstrated deep expertise building Java services, implementing high-throughput Spring/Hibernate patterns, and practical CDC pipelines using Debezium with Kafka for reliable data synchronization.</li>
+                <li class="masked-item"><strong>Microservices &amp; Saga Trade-offs:</strong> Articulated architectural trade-offs for microservices architecture and Sagas, emphasizing idempotent compensations and tracing challenges for reliable eventual consistency in production failure modes.</li>
+                <li class="masked-item"><strong>JVM Diagnostics &amp; Contention:</strong> Used production JVM diagnostic tooling including jmap, jcmd, jstack, MAT, plus JMX and Grafana; fixed an AOP classloader leak and reduced contention.</li>
               </ul>
             </div>
           </div>
@@ -1688,7 +1695,7 @@
         scoreEl.textContent = '0%';
         const start = performance.now();
         const duration = 1200;
-        const target = 91;
+        const target = 81;
         function updateScore(now) {
           if (states[current] !== 'report') return;
           const progress = Math.min((now - start) / duration, 1);
