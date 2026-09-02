@@ -187,7 +187,7 @@
     }
 
     .waveform-wrap {
-      width: 58%;
+      width: 62%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -201,30 +201,51 @@
       display: block;
     }
 
-    .audio-clock {
-      font-family: 'Dosis', monospace, sans-serif;
-      font-size: 4cqw;
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      opacity: 0.8;
+    .audio-timeline-wrap {
+      width: 100%;
       display: flex;
+      align-items: center;
+      gap: 1.4cqw;
     }
 
-    .audio-clock .timer-char {
-      width: 0.62em;
+    .timeline-time {
+      font-family: 'Dosis', monospace, sans-serif;
+      font-size: 1.8cqw;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.75);
+      letter-spacing: 0.04em;
+      min-width: 3.2cqw;
+      text-align: center;
     }
 
-    .audio-note {
+    .timeline-bar {
+      flex: 1;
+      height: 0.45cqw;
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      position: relative;
+    }
+
+    .timeline-progress {
+      height: 100%;
+      width: 0%;
+      background: #EA580C;
+      border-radius: 999px;
+      position: relative;
+      box-shadow: 0 0 10px rgba(234, 88, 12, 0.5);
+    }
+
+    .timeline-progress::after {
+      content: '';
       position: absolute;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      font-family: 'Archivo', Arial, sans-serif;
-      font-size: 0.95cqw;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      opacity: 0.35;
+      right: -0.4cqw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0.95cqw;
+      height: 0.95cqw;
+      border-radius: 50%;
+      background: #FFFFFF;
+      box-shadow: 0 0 8px rgba(234, 88, 12, 0.8);
     }
 
     /* Reveal slide */
@@ -834,9 +855,14 @@
         </div>
         <div class="waveform-wrap">
           <canvas class="waveform-canvas" id="waveform-canvas-paused"></canvas>
-          <div class="audio-clock" id="audio-clock"></div>
+          <div class="audio-timeline-wrap">
+            <span class="timeline-time" id="audio-time-current-paused">0:00</span>
+            <div class="timeline-bar">
+              <div class="timeline-progress" id="audio-progress-paused" style="width: 0%;"></div>
+            </div>
+            <span class="timeline-time" id="audio-time-total-paused">1:30</span>
+          </div>
         </div>
-        <div class="audio-note">Reconstruction from a real transcript</div>
       </section>
 
       <!-- 7. Waveform playing -->
@@ -849,9 +875,14 @@
         </div>
         <div class="waveform-wrap">
           <canvas class="waveform-canvas" id="waveform-canvas-playing"></canvas>
-          <div class="audio-clock" id="audio-clock-running"></div>
+          <div class="audio-timeline-wrap">
+            <span class="timeline-time" id="audio-time-current-playing">0:00</span>
+            <div class="timeline-bar">
+              <div class="timeline-progress" id="audio-progress-playing" style="width: 0%;"></div>
+            </div>
+            <span class="timeline-time" id="audio-time-total-playing">1:30</span>
+          </div>
         </div>
-        <div class="audio-note">Reconstruction from a real transcript</div>
       </section>
 
       <!-- 8. Black -->
@@ -891,16 +922,16 @@
             </div>
 
             <div class="report-details-col">
-              <div class="report-candidate-name">John Doe</div>
+              <div class="report-candidate-name">Stephen Doe</div>
               <div class="report-candidate-contacts">
-                <span>john.doe@example.com</span>
+                <span>stephen.doe@example.com</span>
                 <span class="contact-sep">•</span>
                 <span>+1 (555) 382-9104</span>
               </div>
               <div class="report-meta-grid">
                 <div class="meta-item">
                   <span class="meta-label">Job:</span>
-                  <span class="meta-val">Lead E-Commerce</span>
+                  <span class="meta-val">Senior Java Developer</span>
                 </div>
                 <div class="meta-item">
                   <span class="meta-label">Company:</span>
@@ -962,7 +993,7 @@
                   </svg>
                   <span class="skill-score">93%</span>
                 </div>
-                <span class="skill-name">GMV Growth &amp; Strategy</span>
+                <span class="skill-name">Java &amp; JVM Engineering</span>
               </div>
 
               <div class="skill-donut-item">
@@ -979,7 +1010,7 @@
                   </svg>
                   <span class="skill-score">92%</span>
                 </div>
-                <span class="skill-name">Marketplace &amp; Sellers</span>
+                <span class="skill-name">Distributed Systems Architecture</span>
               </div>
 
               <div class="skill-donut-item">
@@ -996,7 +1027,7 @@
                   </svg>
                   <span class="skill-score">91%</span>
                 </div>
-                <span class="skill-name">Data-Driven Decisions</span>
+                <span class="skill-name">Microservices &amp; Cloud Architecture</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1009,11 +1040,11 @@
                       </linearGradient>
                     </defs>
                     <circle class="skill-track" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" />
-                    <circle class="skill-bar score-90" cx="20" cy="20" r="16" fill="none" stroke="url(#skillGrad4)" stroke-width="3.2" stroke-linecap="round" />
+                    <circle class="skill-bar score-90" cx="20" cy="20" r="16" fill="none" stroke-width="3.2" stroke-linecap="round" />
                   </svg>
                   <span class="skill-score">90%</span>
                 </div>
-                <span class="skill-name">Leadership &amp; Influence</span>
+                <span class="skill-name">Performance &amp; Scalability</span>
               </div>
 
               <div class="skill-donut-item">
@@ -1030,7 +1061,7 @@
                   </svg>
                   <span class="skill-score">89%</span>
                 </div>
-                <span class="skill-name">Ad Monetisation</span>
+                <span class="skill-name">Concurrency &amp; Multithreading</span>
               </div>
             </div>
           </div>
@@ -1041,11 +1072,11 @@
           <div class="report-summary-section">
             <div class="summary-content-wrap">
               <ul class="summary-list">
-                <li><strong>15+ Years Leadership:</strong> Fifteen years of ecommerce leadership across India, MENA, and China focused on zero to one builds, P&amp;L ownership, and scaling GMV significantly.</li>
-                <li><strong>$4B Business &amp; Quick Commerce:</strong> Led a $4B business at Noon, launched Super Mall quick commerce to $40M within 8 months, and scaled seller ecosystems.</li>
-                <li><strong>Margin Protection &amp; Leakage:</strong> Implemented pricing guardrails for promotions, closed $8M annual leakage, and established min/max competitive pricing to protect margins.</li>
-                <li class="masked-item">Built and tiered a 10,000 seller ecosystem at Club Factory, introduced per-seller scorecards, joint business plans, and high-touch interventions to reduce churn.</li>
-                <li class="masked-item">Scaled marketplace ad revenue through category campaigns and PLP monetization, pricing homepage and category placements and growing ad revenue from $1.3M to $2.4M.</li>
+                <li><strong>12+ Years Backend Engineering:</strong> 12 years of backend development experience, including six years working on a managed Kafka service at cloud scale and five years as a Staff Engineer in payments.</li>
+                <li><strong>High-Scale Distributed Systems:</strong> Demonstrated strong knowledge of optimistic vs. pessimistic locking, Saga orchestration/choreography, eventual consistency, compensating transactions, and high-throughput architectures.</li>
+                <li><strong>AWS &amp; Microservices Migration:</strong> Provided a detailed zero-downtime migration strategy using the Strangler Fig pattern, API Gateway/proxy routing, feature flags, traffic shadowing, dedicated databases, and CDC with Debezium + Kafka.</li>
+                <li class="masked-item"><strong>Advanced Production Debugging:</strong> Diagnosed a real JVM metaspace leak and thread-contention issue using JMX, Grafana, JMAP, JCMD, Eclipse MAT, and JStack, identifying a class-loader leak and inefficient caching as root causes.</li>
+                <li class="masked-item"><strong>Strong Technical Depth:</strong> Demonstrated strong conceptual understanding of concurrent token-bucket rate limiting and atomic operations with deep architectural foundation.</li>
               </ul>
             </div>
           </div>
@@ -1178,7 +1209,22 @@
       let audioRaf = null;
       let audioRunning = false;
       let idleRaf = null;
-      const AUDIO_DURATION = 60;
+      const AUDIO_DURATION = 90;
+
+      function formatTime(totalSeconds) {
+        const s = Math.max(totalSeconds, 0);
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
+      }
+
+      function updateTimeline(elapsed, isPlaying) {
+        const pct = Math.min((elapsed / AUDIO_DURATION) * 100, 100);
+        const currentEl = document.getElementById(isPlaying ? 'audio-time-current-playing' : 'audio-time-current-paused');
+        const progressEl = document.getElementById(isPlaying ? 'audio-progress-playing' : 'audio-progress-paused');
+        if (currentEl) currentEl.textContent = formatTime(elapsed);
+        if (progressEl) progressEl.style.width = pct + '%';
+      }
 
       // Equalizer configuration
       const BAR_COUNT = 48;
@@ -1201,17 +1247,6 @@
       for (let i = 0; i < BAR_COUNT; i++) {
         currentLevels[i] = 0.0;
         targetLevels[i] = 0.0;
-      }
-
-      let clickCount = 0;
-      let clickTimer = null;
-      const DBL_CLICK_WINDOW = 300;
-
-      function formatTime(totalSeconds) {
-        const s = Math.max(totalSeconds, 0);
-        const m = Math.floor(s / 60);
-        const sec = Math.floor(s % 60);
-        return String(m).padStart(2, '0') + ':' + String(sec).padStart(2, '0');
       }
 
       function renderClock(containerId, totalSeconds) {
@@ -1466,7 +1501,7 @@
 
         const playingCanvas = document.getElementById('waveform-canvas-playing');
         drawEqualizer(playingCanvas, currentLevels);
-        renderClock('audio-clock-running', elapsed);
+        updateTimeline(elapsed, true);
 
         if (elapsed < AUDIO_DURATION && audioEl && !audioEl.paused) {
           audioRaf = requestAnimationFrame(tickAudio);
@@ -1598,7 +1633,7 @@
           startAudio();
         } else if (states[current] === 'waveform-paused') {
           stopAudio();
-          renderClock('audio-clock', 0);
+          updateTimeline(0, false);
           const pausedCanvas = document.getElementById('waveform-canvas-paused');
           drawEqualizer(pausedCanvas, currentLevels);
         }
@@ -1637,7 +1672,7 @@
           startAudio();
         } else if (states[current] === 'waveform-paused') {
           stopAudio();
-          renderClock('audio-clock', 0);
+          updateTimeline(0, false);
           const pausedCanvas = document.getElementById('waveform-canvas-paused');
           drawEqualizer(pausedCanvas, currentLevels);
         }
@@ -1702,6 +1737,10 @@
       function endLongPress() {
         clearTimeout(longPressTimer);
       }
+
+      let clickCount = 0;
+      let clickTimer = null;
+      const DBL_CLICK_WINDOW = 280;
 
       function handleClick(e) {
         if (isLongPress) {
@@ -1773,8 +1812,8 @@
       // Initial renders
       renderClock('timer-display', TIMER_DURATION);
       renderClock('timer-display-running', TIMER_DURATION);
-      renderClock('audio-clock', 0);
-      renderClock('audio-clock-running', 0);
+      updateTimeline(0, false);
+      updateTimeline(0, true);
 
       // Render initial flat baseline on paused canvas
       const pausedCanvas = document.getElementById('waveform-canvas-paused');
