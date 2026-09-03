@@ -36,6 +36,11 @@
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
     }
 
     /* Mobile portrait rotation helper */
@@ -88,6 +93,9 @@
       align-items: center;
       justify-content: center;
       background: var(--bg);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     #stage {
@@ -98,6 +106,9 @@
       background: var(--bg);
       overflow: hidden;
       container-type: inline-size;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .slide {
@@ -109,11 +120,24 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity var(--fade) ease-out;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
     }
 
     .slide.active {
       opacity: 1;
       pointer-events: auto;
+    }
+
+    /* Ensure all text, elements, cards, and images allow clicks to pass directly through to the active slide */
+    .slide * {
+      pointer-events: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      -webkit-user-drag: none !important;
     }
 
     /* Logo placements */
@@ -1845,7 +1869,7 @@
       document.addEventListener('mousemove', moveLongPress);
       document.addEventListener('mouseup', endLongPress);
 
-      document.addEventListener('click', handleClick);
+      document.addEventListener('click', handleClick, true);
       document.addEventListener('dblclick', (e) => {
         if (states[current] === 'waveform-playing') {
           e.preventDefault();
