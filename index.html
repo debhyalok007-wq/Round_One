@@ -427,6 +427,7 @@
       padding: 0.22cqw;
       background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05));
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
     }
 
     .report-candidate-photo {
@@ -435,6 +436,8 @@
       object-fit: cover;
       border-radius: 50%;
       display: block;
+      filter: blur(4px);
+      transform: scale(1.06);
     }
 
     /* Middle Details (replaces '72' position) */
@@ -949,7 +952,7 @@
           <!-- Top Row: Candidate Photo on Left, Details in Center (replaces 72), Score & Recommendation on Right -->
           <div class="report-top-row">
             <div class="report-photo-wrap">
-              <img class="report-candidate-photo" src="Public/Sara.png?v=2" alt="Candidate Photo">
+              <img class="report-candidate-photo" src="Public/Sara.png?v=3" alt="Candidate Photo">
             </div>
 
             <div class="report-details-col">
